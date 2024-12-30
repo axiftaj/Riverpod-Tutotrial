@@ -1,6 +1,6 @@
 {
-    "name": "riverpod_tutorials",
-    "short_name": "riverpod_tutorials",
+    "name": "riverpod_tutorial",
+    "short_name": "riverpod_tutorial",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

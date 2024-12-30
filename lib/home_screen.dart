@@ -1,54 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_tutorial/counter_provider.dart';
 
 
-
-
-final counterProvider = StateProvider<int>((ref) => 0);
-
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends ConsumerStatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends ConsumerState<HomePage> {
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: CounterWidget(),
+    final value = ref.watch(counterProvider);
+    return ProviderScope(
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Riverpod Basics")),
+        body: Center(
+          child: Text(value.toString()),
+        ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              ref.read(counterProvider.notifier).state++;
+            }
+        ),
+      ),
     );
   }
 }
 
+// class HomePage extends ConsumerWidget  {
+//   @override
+//   Widget build(BuildContext context , WidgetRef ref) {
+//     final value = ref.watch(greetingProvider);
+//     return ProviderScope(
+//       child: Scaffold(
+//         appBar: AppBar(title: const Text("Riverpod Basics")),
+//         body: Center(
+//           child: Text(value),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class CounterWidget extends ConsumerWidget {
-  const CounterWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // watch will listen the changes, recommend to suer inside the build widget
-    final name = ref.watch(nameProvider);
-    //read will only listen one, user outside the build widget
-    final nameRead = ref.read(nameProvider);
-    return  Scaffold(
-      body: Center(
-        child: Consumer(
-            builder: (context, ref, child){
-              return Text(ref.watch(nameProvider).toString());
-            },
-      ),)
-    );
-  }
-}
-
-// final nameProvider = Provider<String>((ref){
-//   return 'Asif Taj' ;
-// });
-
-
-final nameProvider = StateProvider<String>((ref){
-  return 'Asif Taj' ;
-});
