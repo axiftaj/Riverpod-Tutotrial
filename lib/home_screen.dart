@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_tutorial/counter_provider.dart';
 
+import 'package:riverpod/riverpod.dart';
+
+final counterProvider = Provider<String>((ref) {
+  return 'Subscriber' ;
+});
+
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -23,7 +29,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: (){
-              ref.read(counterProvider.notifier).state++;
+             // ref.read(counterProvider.notifier).state++;
             }
         ),
       ),
