@@ -47,18 +47,3 @@ class HomeScreen extends ConsumerWidget {
 }
 
 
-// class HomePage extends ConsumerWidget  {
-//   @override
-//   Widget build(BuildContext context , WidgetRef ref) {
-//     final value = ref.watch(greetingProvider);
-//     return ProviderScope(
-//       child: Scaffold(
-//         appBar: AppBar(title: const Text("Riverpod Basics")),
-//         body: Center(
-//           child: Text(value),
-//         ),
-//       ),
-//     );
-//   }
-// }
-

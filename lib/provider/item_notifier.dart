@@ -13,7 +13,9 @@ class ItemNotifier extends StateNotifier<List<Item>> {
   // Create
   void addItem(String name) {
     final newItem = Item(id: DateTime.now().toString(), name: name);
-    state = [...state, newItem];
+   state.add(newItem);
+   state = state.toList();
+
   }
 
   // Read (state is already exposed as `state`)
