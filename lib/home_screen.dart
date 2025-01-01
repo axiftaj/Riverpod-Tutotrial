@@ -1,83 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_tutorial/counter_provider.dart';
+import 'package:riverpod_tutorial/provider/item_notifier.dart';
 
-import 'package:riverpod/riverpod.dart';
-
-final counterProvider = StateProvider<int>((ref) {
-  return  0 ;
-});
-
-final switchProvider = StateProvider<bool>((ref) {
-  return  false ;
-});
-
-class HomePage extends ConsumerStatefulWidget {
-  const HomePage({super.key});
-
+class HomeScreen extends ConsumerWidget {
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final items = ref.watch(itemProvider);
 
-class _HomePageState extends ConsumerState<HomePage> {
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Counter App with Riverpod'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(fontSize: 16),
-            ),
-            Consumer(
-                builder: (context, ref, child){
-                  final counter = ref.watch(counterProvider);
-                  return Text(
-                    '$counter',
-                    style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                  );
-                }
-            ),
-            Consumer(
-                builder: (context, ref, child){
-                  final counter = ref.watch(switchProvider);
-                  return Switch(value: counter, onChanged: (value){
-                    ref.read(switchProvider.notifier).state = value;
-                  });
-                }
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      appBar: AppBar(title: const Text('CRUD with Riverpod')),
+      body: items.isEmpty ? const Center(child:  Text('No Task Found')) : ListView.builder(
+
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return ListTile(
+            title: Text(item.name),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
+                IconButton(
+                  icon: const Icon(Icons.edit),
                   onPressed: () {
-                    ref.read(counterProvider.notifier).state++;
+                    ref.read(itemProvider.notifier).updateItem(item.id, 'Updated Name');
                   },
-                  child: const Text('+'),
                 ),
-                const SizedBox(width: 20),
-                ElevatedButton(
+                IconButton(
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
-                    ref.read(counterProvider.notifier).state--;
+                    ref.read(itemProvider.notifier).deleteItem(item.id);
                   },
-                  child: const Text('-'),
                 ),
               ],
             ),
-          ],
-        ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ref.read(itemProvider.notifier).addItem('New Item');
+        },
+        child: Icon(Icons.add),
       ),
     );
-
   }
 }
+
 
 // class HomePage extends ConsumerWidget  {
 //   @override
