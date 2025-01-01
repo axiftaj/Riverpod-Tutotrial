@@ -21,12 +21,11 @@ class ItemNotifier extends StateNotifier<List<Item>> {
 
   // Update
   void updateItem(String id, String newName) {
-    state = state.map((item) {
-      if (item.id == id) {
-        return item.copyWith(name: newName);
-      }
-      return item;
-    }).toList();
+
+    int foundIndex = state.indexWhere((element) =>  element.id == id) ;
+    state[foundIndex].name = newName;
+    state = state.toList();
+
   }
 
   // Delete
