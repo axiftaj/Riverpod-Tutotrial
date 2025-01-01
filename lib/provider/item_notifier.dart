@@ -13,9 +13,8 @@ class ItemNotifier extends StateNotifier<List<Item>> {
   // Create
   void addItem(String name) {
     final newItem = Item(id: DateTime.now().toString(), name: name);
-   state.add(newItem);
-   state = state.toList();
-
+     state.add(newItem);
+    state = state.toList();
   }
 
   // Read (state is already exposed as `state`)
@@ -32,6 +31,7 @@ class ItemNotifier extends StateNotifier<List<Item>> {
 
   // Delete
   void deleteItem(String id) {
-    state = state.where((item) => item.id != id).toList();
+    state.removeWhere((item) => item.id == id);
+    state = state.toList();
   }
 }
