@@ -17,7 +17,7 @@ class SliderScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Consumer(builder: (context, ref, child){
-            print('build');
+
             final slider = ref.watch(sliderProvider.select((state) => state.showPassword));
             return IconButton(onPressed: (){
               final stateProvider =  ref.read(sliderProvider.notifier);

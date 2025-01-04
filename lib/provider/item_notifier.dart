@@ -34,3 +34,8 @@ class ItemNotifier extends StateNotifier<List<Item>> {
     state = state.toList();
   }
 }
+
+
+class ItemState {
+
+}
