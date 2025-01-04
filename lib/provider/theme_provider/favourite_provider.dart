@@ -29,12 +29,12 @@ class FavouriteSateProvider extends StateNotifier<FavouriteState> {
   }
 
   void favouriteItem(String option){
-    state = state.copyWith(filteredItems:  _filterItems(state.allItems , option));
+    state = state.copyWith(filteredItems:  _favouriteItem(state.allItems , option));
   }
 
-  List<Item> _filterItems(List<Item> items, String option) {
-
+  List<Item> _favouriteItem(List<Item> items, String option) {
     print(option);
+
     if(option == 'All'){
       return items ;
     }
@@ -42,6 +42,20 @@ class FavouriteSateProvider extends StateNotifier<FavouriteState> {
     return items
         .where((item) =>
     item.favourite == true)
+        .toList();
+  }
+
+
+
+  List<Item> _filterItems(List<Item> items, String query) {
+    if (query.isEmpty) {
+      return items;
+    }
+
+
+    return items
+        .where((item) =>
+        item.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
   }
  

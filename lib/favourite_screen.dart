@@ -16,7 +16,7 @@ class FavouriteScreen extends ConsumerWidget {
           PopupMenuButton<String>(
             onSelected: (value) {
 
-              ref.read(favouriteProvider.notifier).filterList(value);
+              ref.read(favouriteProvider.notifier).favouriteItem(value);
 
             },
             itemBuilder: (BuildContext context) {
@@ -35,26 +35,33 @@ class FavouriteScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          TextField(
-            onChanged: (value){
-              ref.read(favouriteProvider.notifier).filterList(value);
-            },
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: favouriteList.filteredItems.length,
-              itemBuilder: (context, index) {
-                final item = favouriteList.filteredItems[index];
-                return ListTile(
-                  title: Text(item.name),
-                  trailing:  Icon(item.favourite ? Icons.favorite : Icons.favorite_border),
-                );
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Search' ,
+                border: OutlineInputBorder()
+              ),
+              onChanged: (value){
+                ref.read(favouriteProvider.notifier).filterList(value);
               },
             ),
-          )
-        ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: favouriteList.filteredItems.length,
+                itemBuilder: (context, index) {
+                  final item = favouriteList.filteredItems[index];
+                  return ListTile(
+                    title: Text(item.name),
+                    trailing:  Icon(item.favourite ? Icons.favorite : Icons.favorite_border),
+                  );
+                },
+              ),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
