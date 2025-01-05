@@ -2,13 +2,13 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final favouriteProvider = StateNotifierProvider<FavouriteSateProvider, FavouriteState>((ref){
-  return FavouriteSateProvider();
+final favouriteProvider = StateNotifierProvider<FavouriteNotifier, FavouriteState>((ref){
+  return FavouriteNotifier();
 });
 
 
-class FavouriteSateProvider extends StateNotifier<FavouriteState> {
-  FavouriteSateProvider(): super(FavouriteState(allItems: [] , search: '', filteredItems: []));
+class FavouriteNotifier extends StateNotifier<FavouriteState> {
+  FavouriteNotifier(): super(FavouriteState(allItems: [] , search: '', filteredItems: []));
 
   void addItem(){
      List<Item> item = [
@@ -33,7 +33,6 @@ class FavouriteSateProvider extends StateNotifier<FavouriteState> {
   }
 
   List<Item> _favouriteItem(List<Item> items, String option) {
-    print(option);
 
     if(option == 'All'){
       return items ;
@@ -51,7 +50,6 @@ class FavouriteSateProvider extends StateNotifier<FavouriteState> {
     if (query.isEmpty) {
       return items;
     }
-
 
     return items
         .where((item) =>
@@ -100,5 +98,5 @@ class Item {
         id: id ?? this.id ,
         favourite: favourite ?? this.favourite
     );
-}
+  }
 }

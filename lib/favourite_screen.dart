@@ -4,6 +4,7 @@ import 'package:riverpod_tutorial/provider/theme_provider/favourite_provider.dar
 
 
 class FavouriteScreen extends ConsumerWidget {
+  const FavouriteScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
