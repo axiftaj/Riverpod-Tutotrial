@@ -41,7 +41,7 @@ class FavouriteScreen extends ConsumerWidget {
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const  InputDecoration(
                 hintText: 'Search' ,
                 border: OutlineInputBorder()
               ),
