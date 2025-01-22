@@ -17,7 +17,6 @@ class FutureProviderScreen extends ConsumerWidget {
       body: Center(
         child: provider.when(
             skipLoadingOnRefresh: false,
-
             data: (value) => Text(value.toString()),
             error: (error, stack) => Text(error.toString()),
             loading: () => const CircularProgressIndicator()
