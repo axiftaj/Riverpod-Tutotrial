@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_tutorial/post_screen.dart';
 import 'package:riverpod_tutorial/slider_screen.dart';
 import 'package:riverpod_tutorial/stream_provider_example.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
 
-        home:  StreamProviderExample(),
+        home:  PostScreen(),
       ),
     );
   }

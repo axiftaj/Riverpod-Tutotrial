@@ -23,14 +23,14 @@ class StreamProviderExample extends ConsumerWidget {
     final stockPriceAsync = ref.watch(stockPriceProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Real-Time Stock Price')),
+      appBar: AppBar(title: const Text('Real-Time Stock Price')),
       body: Center(
         child: stockPriceAsync.when(
           data: (price) => Text(
             '\$${price.toStringAsFixed(2)}',
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
-          loading: () => CircularProgressIndicator(),
+          loading: () => const CircularProgressIndicator(),
           error: (error, stack) => Text('Error: $error'),
         ),
       ),

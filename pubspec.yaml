@@ -37,9 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   riverpod: ^2.6.1
   flutter_riverpod: ^2.6.1
-  tencent_cloud_chat_sdk: ^8.4.6667
-  tencent_cloud_chat_uikit: ^4.0.3
-  tencent_im_sdk_plugin_platform_interface: ^1.0.16
+  http:
 
 dev_dependencies:
   flutter_test:
