@@ -22,8 +22,6 @@ final postProvider = FutureProvider<List<Post>>((ref) async {
 });
 
 
-
-
 class Post {
   final int id;
   final String title;
