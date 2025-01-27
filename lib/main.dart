@@ -6,6 +6,7 @@ import 'package:riverpod_tutorial/stream_provider_example.dart';
 
 import 'favourite_screen.dart';
 import 'future_provider.dart';
+import 'login_screen.dart';
 
 
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
 
-        home:  PostScreen(),
+        home:  LoginScreen(),
       ),
     );
   }

@@ -24,7 +24,6 @@ class FutureProviderScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: (){
-
             ref.invalidate(futureProvider);
           }
       ),
